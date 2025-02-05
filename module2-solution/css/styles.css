@@ -31,16 +31,19 @@ p {
     margin-top: 40px;
 }
 
-#chicken {
+#chicken,
+#chicken-mobile {
     background-color: pink;
 }
 
-#beef {
+#beef,
+#beef-mobile {
     background-color: rgb(201, 79, 79);
     color: white;
 }
 
-#sushi {
+#sushi,
+#sushi-mobile {
     background-color: rgb(255, 222, 146);
 }
 
@@ -114,7 +117,10 @@ p {
         width: 100%;
     }
 
-    .mobile-title {
+    .mobile-title,
+    #chicken-mobile,
+    #beef-mobile,
+    #sushi-mobile {
         display: none;
     }
 
@@ -195,7 +201,10 @@ p {
         width: 100%;
     }
 
-    .mobile-title {
+    .mobile-title,
+    #chicken-mobile,
+    #beef-mobile,
+    #sushi-mobile {
         display: none;
     }
 
@@ -213,7 +222,10 @@ p {
 /************Small devices only ****************/
 @media(max-width: 767px) {
 
-    .original-title {
+    .original-title,
+    #chicken,
+    #beef,
+    #sushi {
         display: none;
     }
 
