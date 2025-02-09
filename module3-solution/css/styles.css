@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    padding: 8px;
+}
+
+.menu-item {
+    background-color: rgb(186, 180, 180);
+    position: relative;
+    border: 1px solid black;
+    height: 90px;
+    overflow: hidden;
+}
+
+.menu-item:hover {
+    cursor: ns-resize;
+    overflow-y: auto;
+}
+
+p {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+}
+
+#chicken,
+#chicken-mobile {
+    background-color: pink;
+}
+
+#beef,
+#beef-mobile {
+    background-color: rgb(201, 79, 79);
+    color: white;
+}
+
+#sushi,
+#sushi-mobile {
+    background-color: rgb(255, 222, 146);
+}
+
+.row {
+    width: 100%;
+    justify-content: center;
+}
+
+
+
+
+/************ Large devices only ****************/
+/*
+.mobile-title,
+#chicken-mobile,
+#beef-mobile,
+#sushi-mobile {
+    display: none;
+}
+
+h2 {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    margin: 0px;
+    text-align: center;
+    width: 150px;
+    border: 1px solid black;
+}
+*/
+
+/************ Medium devices only ****************/
+/*
+.mobile-title,
+#chicken-mobile,
+#beef-mobile,
+#sushi-mobile {
+    display: none;
+}
+
+h2 {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    margin: 0px;
+    text-align: center;
+    width: 150px;
+    border: 1px solid black;
+}
+*/
+/************Small devices only ****************/
+/*
+@media(max-width: 767px) {
+
+    .original-title,
+    #chicken,
+    #beef,
+    #sushi {
+        display: none;
+    }
+
+    h1 {
+        text-align: left;
+        font-size: 150%;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        margin: 0px 0px 0px 8px;
+    }
+
+    h2 {
+        margin: 0px;
+        text-align: center;
+        border: 1px solid black;
+    }
+
+
+    p {
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 10px;
+    }
+}
+
+*/
