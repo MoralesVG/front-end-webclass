@@ -1,6 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
     box-sizing: border-box;
-    font-family: Arial;
+    font-family: Atma;
+}
+
+#header-nav {
+    background-color: rgb(201, 79, 79);
+    border-radius: 0;
+    border: 0;
+}
+
+/* #logo-img {
+    background: url('../images/menu-logo.png') no-repeat;
+    max-width: 80px;
+    height: auto;
+} */
+
+.navbar-brand {
+    padding-top: 15px;
+}
+
+.navbar-brand h1 {
+    /* Restaurant name */
+    color: #ffffff;
+    font-size: 2em;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #222;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: .75;
+}
+
+.navbar-brand a:link,
+.navbar-brand a:visited,
+.navbar-brand a:hover,
+.navbar-brand a:active {
+    text-decoration: none;
 }
 
 h1 {
@@ -34,6 +71,7 @@ p {
 #chicken,
 #chicken-mobile {
     background-color: pink;
+    color: #323337;
 }
 
 #beef,
@@ -52,53 +90,52 @@ p {
     justify-content: center;
 }
 
-
-
-
 /************ Large devices only ****************/
-/*
-.mobile-title,
-#chicken-mobile,
-#beef-mobile,
-#sushi-mobile {
-    display: none;
-}
+@media(min-width: 768px) {
 
-h2 {
-    position: absolute;
-    top: -1px;
-    right: -1px;
-    margin: 0px;
-    text-align: center;
-    width: 150px;
-    border: 1px solid black;
+    #mobile-title,
+    #chicken-mobile,
+    #beef-mobile,
+    #sushi-mobile {
+        display: none;
+    }
+
+    h2 {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        margin: 0px;
+        text-align: center;
+        width: 150px;
+        border: 1px solid black;
+    }
 }
-*/
 
 /************ Medium devices only ****************/
-/*
-.mobile-title,
-#chicken-mobile,
-#beef-mobile,
-#sushi-mobile {
-    display: none;
+@media(min-width: 576px) and (max-width: 767px) {
+
+    #mobile-title,
+    #chicken-mobile,
+    #beef-mobile,
+    #sushi-mobile {
+        display: none;
+    }
+
+    h2 {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        margin: 0px;
+        text-align: center;
+        width: 150px;
+        border: 1px solid black;
+    }
 }
 
-h2 {
-    position: absolute;
-    top: -1px;
-    right: -1px;
-    margin: 0px;
-    text-align: center;
-    width: 150px;
-    border: 1px solid black;
-}
-*/
 /************Small devices only ****************/
-/*
-@media(max-width: 767px) {
+@media(max-width: 575px) {
 
-    .original-title,
+    #original-title,
     #chicken,
     #beef,
     #sushi {
@@ -126,5 +163,3 @@ h2 {
         margin-top: 10px;
     }
 }
-
-*/
