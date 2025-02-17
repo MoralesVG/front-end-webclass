@@ -64,4 +64,31 @@ WARNING!!! WARNING!!!
     }
   }
 
+  // b. In the main script.js, use the map function to create an array based on the names array. This array will contain the greetings based on the names with the same rules as implemented previously. The function passed into the map function should not be an inline function, i.e., separate it into its own named function and pass it into the map function as a value.
+  secondNames = names.map(function (name) {
+    if (name.charAt(0).toLowerCase() === 'j') {
+      return byeSpeaker.speakSimple(name);  // For names starting with J
+    } else {
+      return helloSpeaker.speakSimple(name);  // For names not starting with J
+    }
+  });
+  console.log(secondNames);
+
+  // In the main script.js, use the reduce function to create 2 separate arrays: one with all the ‘hello’ greetings and another with all the good bye greetings. Then, loop over each array (obviously separately) and print out the greetings to the console with console.log. You are required to use {hello: [], bye: []} as your initialValue. (Kind of a hint, isn’t it?)
+  helloNames = secondNames.reduce(function (acc, message) {
+    if (message.startsWith("Hello")) {  // Check if the message starts with "Hello"
+      acc.push(message);  // Add to the accumulator if it starts with "Hello"
+    }
+    return acc;
+  }, []);
+
+  goodbyeNames = secondNames.reduce(function (acc, message) {
+    if (message.startsWith("Good")) {  // Check if the message starts with "Hello"
+      acc.push(message);  // Add to the accumulator if it starts with "Hello"
+    }
+    return acc;
+  }, []);
+
+  console.log(helloNames);
+  console.log(goodbyeNames);
 })();
