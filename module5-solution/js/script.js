@@ -22,6 +22,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
     "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/";
   var menuItemsTitleHtml = "snippets/menu-items-title.html";
   var menuItemHtml = "snippets/menu-item.html";
+  var aboutHtml = "snippets/about.html";
 
   // Convenience function for inserting innerHTML for 'select'
   var insertHtml = function (selector, html) {
@@ -153,6 +154,19 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
     $ajaxUtils.sendGetRequest(
       menuItemsUrl + categoryShort + ".json",
       buildAndShowMenuItemsHTML);
+  };
+
+
+  // Load the about view
+  dc.loadAbout = function () {
+    showLoading("#main-content");
+    $ajaxUtils.sendGetRequest(
+      aboutHtml,
+      function (aboutHtml) {
+        aboutHtml = randomNumberGenerator(aboutHtml);
+        insertHtml("#main-content", aboutHtml);
+      },
+      false);
   };
 
 
@@ -336,6 +350,22 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
     return html;
   }
 
+  //Generate a random number between 1 - 5
+  function randomNumberGenerator(aboutHtml) {
+    var randomRating = Math.floor(Math.random() * 5) + 1;
+    aboutHtml = insertProperty(aboutHtml, "rating", randomRating);
+
+    for (var i = 1; i <= 5; i++) {
+      var className = "class" + i;
+
+      if (i <= randomRating) {
+        aboutHtml = insertProperty(aboutHtml, className, "fa fa-star");
+      } else {
+        aboutHtml = insertProperty(aboutHtml, className, "fa fa-star-o");
+      }
+    }
+    return aboutHtml;
+  }
 
   global.$dc = dc;
 
