@@ -1,32 +1,23 @@
 (function () {
     'use strict';
 
-    angular.module('LunchCheck', [])
-        .controller('LunchCheckController', LunchCheckController);
+    angular.module('ShoppingListCheckOff', [])
+        .controller('ToBuyController', ToBuyController)
+        .controller('AlreadyBoughtController', AlreadyBoughtController)
+        .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
-    LunchCheckController.$inject = ['$scope'];
-    function LunchCheckController($scope) {
-        $scope.lunchMenu = "";
-        $scope.message = "";
-        $scope.style = ""
+    ToBuyController.$inject = ['ShoppingListCheckOffService'];
+    function ToBuyController(ShoppingListCheckOffService) {
 
-        $scope.checkLunch = function () {
-            var userInput = $scope.lunchMenu.split(",").filter(function (dish) {
-                return dish.trim() !== "";
-            });
+    }
 
-            if (userInput == 0) {
-                $scope.message = "Please enter data first";
-                $scope.style = "empty";
-            }
-            else if (userInput.length > 3) {
-                $scope.message = "Too much!";
-                $scope.style = "filled";
-            } else {
-                $scope.message = "Just right!";
-                $scope.style = "filled";
-            }
-        };
-    };
+    AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+    function AlreadyBoughtController(ShoppingListCheckOffService) {
 
+    }
+
+    function ShoppingListCheckOffService() {
+        var service = this;
+
+    }
 })();
