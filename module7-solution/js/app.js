@@ -9,8 +9,9 @@
     ToBuyController.$inject = ['ShoppingListCheckOffService'];
     function ToBuyController(ShoppingListCheckOffService) {
         var to_buy = this;
-        to_buy.items = ShoppingListCheckOffService.getToBuy();
+        to_buy.quantity = "";
 
+        to_buy.items = ShoppingListCheckOffService.getToBuy();
         to_buy.bought = function (itemIndex) {
             ShoppingListCheckOffService.bought(itemIndex);
         };
@@ -26,11 +27,11 @@
         var service = this;
 
         // List of shopping items
-        var to_buy_items = [{ name: "cookies", quantity: 10 },
-        { name: "popcorn", quantity: 5 },
-        { name: "grapes", quantity: 12 },
-        { name: "yogurts", quantity: 8 },
-        { name: "potatoes", quantity: 15 }
+        var to_buy_items = [{ name: "cookies", quantity: 10, pricePerItem: 3.95 },
+        { name: "popcorn", quantity: 5, pricePerItem: 1 },
+        { name: "grapes", quantity: 12, pricePerItem: 3.25 },
+        { name: "yogurts", quantity: 8, pricePerItem: 2.50 },
+        { name: "potatoes", quantity: 15, pricePerItem: .25 }
         ];
 
         var bought_items = [];
