@@ -24,20 +24,10 @@
       <button ng-click="menu.logMatchedItems(menu.searchTerm);" class="btn btn-primary">Narrow It Down For Me!</button>
     </div>
 
-
     <div class="col-md-12">
-      <!-- <found-items found-items="...." on-remove="...."></found-items> -->
-      <ul ng-repeat="category in menu.found">
-        <h4>{{ category.category.name }}</h4>
-
-        <li ng-repeat="item in category.menu_items">
-          {{ item.name }}
-
-        <li class="empty" ng-if="!category.menu_items.length">No items found</li>
-        </li>
-
-      </ul>
+      <found-items found="menu.found" on-remove="menu.removeItem(category, index)"> </found-items>
     </div>
+
 
   </div>
 

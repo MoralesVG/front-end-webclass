@@ -10,18 +10,12 @@
 
     function FoundItemsDirective() {
         var ddo = {
-            templateUrl: 'shoppingList.html',
+            templateUrl: '../foundItems.html',
             scope: {
-                items: '<',
-                myTitle: '@title',
-                badRemove: '=',
+                found: '<',
                 onRemove: '&'
-            },
-            controller: ShoppingListDirectiveController,
-            controllerAs: 'list',
-            bindToController: true
+            }
         };
-
         return ddo;
     };
 
@@ -53,11 +47,17 @@
                 })
         };
 
-    }
+        menu.removeItem = function (category, itemIndex) {
+            MenuSearchService.removeItem(category, itemIndex);
+        };
+
+    };
+
 
     MenuSearchService.$inject = ['$http', 'ApiBasePath'];
     function MenuSearchService($http, ApiBasePath) {
         var service = this;
+        var foundItems = {};
 
         service.getMenuItems = function () {
             var response = $http({
@@ -74,7 +74,7 @@
             }).then(function (result) {
 
                 var allItems = result.data;
-                var foundItems = {};
+                foundItems = {};
 
                 // process result and only keep items that match
                 if (searchTerm) {
@@ -83,7 +83,6 @@
                         if (allItems.hasOwnProperty(index)) {
                             var category = allItems[index];
                             foundItems[index] = category;
-
                             var match = category.menu_items.filter(function (item) {
                                 return (item.description.toLowerCase().includes(searchTerm.toLowerCase()) || item.name.toLowerCase().includes(searchTerm.toLowerCase()));
                             });
@@ -98,6 +97,10 @@
                 // return processed items
                 return foundItems;
             });
+        };
+
+        service.removeItem = function (category, itemIndex) {
+            category.menu_items.splice(itemIndex, 1);
         };
     }
 })();

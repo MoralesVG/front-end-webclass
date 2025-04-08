@@ -1,0 +1,11 @@
+<ul ng-repeat="category in found">
+    <h4>{{ category.category.name }}</h4>
+
+    <li ng-repeat="item in category.menu_items">
+        <button ng-click="onRemove({category: $parent.category, index: $index});">Remove Item</button>
+        {{ item.name }}
+    </li>
+
+    <li class="empty" ng-if="!category.menu_items.length">No items found</li>
+
+</ul>
