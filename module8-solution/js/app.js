@@ -1,67 +1,103 @@
 (function () {
     'use strict';
 
-    angular.module('ShoppingListCheckOff', [])
-        .controller('ToBuyController', ToBuyController)
-        .controller('AlreadyBoughtController', AlreadyBoughtController)
-        .service('ShoppingListCheckOffService', ShoppingListCheckOffService)
-        .filter('money', MoneyFilter);
+    angular.module('NarrowItDownApp', [])
+        .controller('NarrowItDownController', NarrowItDownController)
+        .service('MenuSearchService', MenuSearchService)
+        .constant('ApiBasePath', "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json")
+        .directive('foundItems', FoundItemsDirective);
 
-    ToBuyController.$inject = ['ShoppingListCheckOffService'];
-    function ToBuyController(ShoppingListCheckOffService) {
-        var to_buy = this;
-        to_buy.quantity = "";
 
-        to_buy.items = ShoppingListCheckOffService.getToBuy();
-        to_buy.bought = function (itemIndex) {
-            ShoppingListCheckOffService.bought(itemIndex);
+    function FoundItemsDirective() {
+        var ddo = {
+            templateUrl: 'shoppingList.html',
+            scope: {
+                items: '<',
+                myTitle: '@title',
+                badRemove: '=',
+                onRemove: '&'
+            },
+            controller: ShoppingListDirectiveController,
+            controllerAs: 'list',
+            bindToController: true
         };
+
+        return ddo;
+    };
+
+    NarrowItDownController.$inject = ['MenuSearchService'];
+    function NarrowItDownController(MenuSearchService) {
+        var menu = this;
+        menu.searchTerm = "";
+
+        menu.logMenuItems = function () {
+            var promise = MenuSearchService.getMenuItems();
+
+            promise.then(function (response) {
+                menu.categories = response.data;
+            })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        };
+
+        menu.logMatchedItems = function () {
+            var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm);
+
+            promise.then(function (response) {
+                menu.found = response;
+
+            })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        };
+
     }
 
-    AlreadyBoughtController.$inject = ['ShoppingListCheckOffService', 'moneyFilter'];
-    function AlreadyBoughtController(ShoppingListCheckOffService, moneyFilter) {
-        var bought = this;
-
-        bought.items = ShoppingListCheckOffService.getBought();
-
-        bought.message = function (itemIndex) {
-            ShoppingListCheckOffService.boughtMessage(itemIndex);
-        }
-    }
-
-    function ShoppingListCheckOffService() {
+    MenuSearchService.$inject = ['$http', 'ApiBasePath'];
+    function MenuSearchService($http, ApiBasePath) {
         var service = this;
 
-        // List of shopping items
-        var to_buy_items = [{ name: "cookies", quantity: 10, pricePerItem: 4 },
-        { name: "popcorn", quantity: 5, pricePerItem: 1 },
-        { name: "grapes", quantity: 12, pricePerItem: 3 },
-        { name: "yogurts", quantity: 8, pricePerItem: 2 },
-        { name: "potatoes", quantity: 16, pricePerItem: .25 }
-        ];
-
-        var bought_items = [];
-
-        service.getToBuy = function () {
-            return to_buy_items;
+        service.getMenuItems = function () {
+            var response = $http({
+                method: "GET",
+                url: (ApiBasePath)
+            });
+            return response;
         };
 
-        service.getBought = function () {
-            return bought_items;
-        };
+        service.getMatchedMenuItems = function (searchTerm) {
+            return $http({
+                method: "GET",
+                url: (ApiBasePath)
+            }).then(function (result) {
 
-        service.bought = function (itemIndex) {
-            var item = to_buy_items[itemIndex];
-            to_buy_items.splice(itemIndex, 1);
-            bought_items.push(item);
-        };
-    }
+                var allItems = result.data;
+                var foundItems = {};
 
-    function MoneyFilter() {
-        return function (input) {
-            input = input || "";
-            input = input.replace('$$$', '$');
-            return input;
+                // process result and only keep items that match
+                if (searchTerm) {
+
+                    for (var index in allItems) {
+                        if (allItems.hasOwnProperty(index)) {
+                            var category = allItems[index];
+                            foundItems[index] = category;
+
+                            var match = category.menu_items.filter(function (item) {
+                                return (item.description.toLowerCase().includes(searchTerm.toLowerCase()) || item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+                            });
+
+                            foundItems[index].menu_items = match;
+                        }
+                    }
+                } else {
+                    foundItems = allItems;
+                }
+
+                // return processed items
+                return foundItems;
+            });
         };
     }
 })();
