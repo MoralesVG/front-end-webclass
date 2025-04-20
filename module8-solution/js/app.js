@@ -10,6 +10,7 @@
 
     function FoundItemsDirective() {
         var ddo = {
+            //  templateUrl: '../foundItems.html', // uncomment this line and comment line 14 to run locally
             templateUrl: '../module8-solution/foundItems.html',
             scope: {
                 found: '<',
