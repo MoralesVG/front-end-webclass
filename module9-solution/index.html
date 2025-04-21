@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Narrow Down Your Menu Choice</title>
+  <title>Menu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles/bootstrap.min.css">
   <link rel="stylesheet" href="styles/styles.css">
@@ -13,7 +13,7 @@
   </style>
 </head>
 
-<body ng-app='NarrowItDownApp'>
+<body ng-app='MenuApp'>
   <div class="container" ng-controller='NarrowItDownController as menu'>
     <h1>Narrow Down Your Chinese Menu Choice</h1>
 
@@ -31,8 +31,22 @@
 
   </div>
 
-  <script src="js/angular.min.js"></script>
-  <script src="js/app.js"></script>
+  <!-- Libraries -->
+  <script src="lib/angular-ui-router.min.js"></script>
+  <script src="lib/angular.min.js"></script>
+
+  <!-- Modules -->
+  <script src="src/menuapp.module.js"></script>
+  <!-- <script src="src/spinner/spinner.module.js"></script> -->
+
+  <!-- 'ShoppingList' module artifacts -->
+  <!-- <script src="src/shoppinglist/shoppinglist.component.js"></script>
+  <script src="src/shoppinglist/shoppinglist.controller.js"></script>
+  <script src="src/shoppinglist/shoppinglist.factory.js"></script>
+  <script src="src/shoppinglist/weightlossfilter.service.js"></script> -->
+
+  <!-- 'Spinner' module artifacts -->
+  <!-- <script src="src/spinner/loadingspinner.component.js"></script> -->
 </body>
 
 </html>
