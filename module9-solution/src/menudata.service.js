@@ -5,26 +5,32 @@
         .service('MenuDataService', MenuDataService)
         .constant('ApiBasePath', "https://coursera-jhu-default-rtdb.firebaseio.com/");
 
-    MenuDataService.$inject = ['$http']
-    function MenuDataService($http) {
+    MenuDataService.$inject = ['$http', '$q', 'ApiBasePath'];
+    function MenuDataService($http, $q, ApiBasePath) {
         var service = this;
 
         service.getAllCategories = function () {
-            return $http({
+            var deferred = $q.defer();
+
+            $http({
                 method: "GET",
                 url: (ApiBasePath + '/categories.json')
             }).then(function (result) {
-                return result;
+                deferred.resolve(result.data);
             })
+
+            return deferred.promise;
         };
 
         service.getItemsForCategory = function (categoryShortName) {
-            return $http({
+            var deferred = $q.defer();
+            $http({
                 method: "GET",
                 url: (ApiBasePath + '/menu_items/' + categoryShortName + '.json')
             }).then(function (result) {
-                return result;
+                deferred.resolve(result.data);
             })
+            return deferred.promise;
         };
     }
 
