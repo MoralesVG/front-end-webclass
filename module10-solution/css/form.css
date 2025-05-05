@@ -1,0 +1,46 @@
+#form-title {
+    text-align: center;
+    color: #fff;
+}
+
+#form-legend {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.6em;
+    color: #f6b319;
+    opacity: .8;
+}
+
+#form-div {
+    width: 100%;
+}
+
+.form-field {
+    color: #222;
+    padding: 5px;
+    margin: 5px;
+}
+
+button {
+    font-size: 24px;
+    background-color: #222;
+}
+
+.ng-touched.ng-valid {
+    border: 2px green solid;
+}
+
+.ng-touched.ng-invalid {
+    border: 2px red solid;
+}
+
+.link {
+    color: #f6b319;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #557c3e;
+}

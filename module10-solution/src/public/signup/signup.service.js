@@ -15,6 +15,7 @@
         };
 
         service.getUser = function () {
+            console.log(userData);
             return userData;
         };
     }

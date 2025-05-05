@@ -46,6 +46,13 @@
         templateUrl: 'src/public/signup/signup.html',
         controller: 'SignupController',
         controllerAs: 'signupCtrl'
+      })
+      .state('public.myinfo', {
+        url: '/myinfo',
+        templateUrl: 'src/public/myinfo/myinfo.html',
+        controller: 'MyinfoController',
+        controllerAs: 'myinfoCtrl'
       });
+
   }
 })();
