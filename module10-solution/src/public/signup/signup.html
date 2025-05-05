@@ -1,0 +1,53 @@
+<h1 id="form-title">David Chu's China Bistro Newsletter</h1>
+
+<fieldset>
+    <legend id="form-legend">Sign up Form</legend>
+
+    <div class="col-md-12 text-center">
+        <form name='signupForm' id="form-div" novalidate>
+            <input type="text" class="form-field" name="firstname" placeholder="First Name"
+                ng-model="signupCtrl.firstname" required>
+            <br>
+
+            <input type="text" class="form-field" name="lastname" placeholder="Last Name" ng-model="signupCtrl.lastname"
+                required>
+            <br>
+
+            <input type="email" class="form-field" name="email" placeholder="Email" ng-model="signupCtrl.email"
+                required>
+
+            <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+                Must be a valid email address: handle@domain format
+            </span>
+            <br>
+
+            <input type="text" class="form-field" name="phone" placeholder="Phone ###-###-####"
+                ng-model="signupCtrl.phone" pattern="(\d{3})-(\d{3})-(\d{4})" required>
+
+            <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+                Phone must be in the format ###-###-####.
+            </span>
+            <br>
+
+            <label>Favorite Dish:</label><br>
+            <select ng-model="signupCtrl.selectedCategory" class="form-field"
+                ng-options="cat for cat in signupCtrl.categories" ng-change="signupCtrl.loadItemsForCategory()"
+                required>
+                <option value=""> Choose a category </option>
+            </select>
+            <br>
+
+            <div ng-if="signupCtrl.menuItems.length > 0">
+                <select ng-model="signupCtrl.selectedItem" class="form-field"
+                    ng-options="item.name for item in signupCtrl.menuItems" required>
+                    <option value=""> Choose an item </option>
+                </select>
+            </div>
+
+            <button ng-disabled="signupForm.$invalid" ng-click="signupCtrl.submit()">Submit</button>
+
+            <div ng-show="signupCtrl.completed">Your information has been saved.</div>
+        </form>
+
+    </div>
+</fieldset>
