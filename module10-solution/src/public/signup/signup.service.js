@@ -10,12 +10,9 @@
 
         service.saveUser = function (data) {
             userData = data;
-
-            console.log(userData);
         };
 
         service.getUser = function () {
-            console.log(userData);
             return userData;
         };
     }

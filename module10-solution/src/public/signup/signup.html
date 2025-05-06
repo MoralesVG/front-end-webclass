@@ -30,19 +30,17 @@
             <br>
 
             <label>Favorite Dish:</label><br>
-            <select ng-model="signupCtrl.selectedCategory" class="form-field"
-                ng-options="cat for cat in signupCtrl.categories" ng-change="signupCtrl.loadItemsForCategory()"
-                required>
-                <option value=""> Choose a category </option>
-            </select>
+            <input type="text" class="form-field" name="selectedItem" placeholder="Favorite Dish"
+                ng-model="signupCtrl.selectedItem.short_name" required maxlength="4"
+                ng-pattern="/^[a-zA-Z]{1,2}\d{1,2}$/"
+                ng-blur="signupCtrl.validateSelectedItem(signupCtrl.selectedItem.short_name)">
+            <span ng-if="signupForm.selectedItem.$invalid && signupForm.selectedItem.$touched">
+                Must be 1–2 letters followed by 1–2 numbers (e.g. A1, AB12).
+            </span>
+            <span ng-if="!signupCtrl.isValid">
+                No such menu item exists.
+            </span>
             <br>
-
-            <div ng-if="signupCtrl.menuItems.length > 0">
-                <select ng-model="signupCtrl.selectedItem" class="form-field"
-                    ng-options="item.name for item in signupCtrl.menuItems" required>
-                    <option value=""> Choose an item </option>
-                </select>
-            </div>
 
             <button ng-disabled="signupForm.$invalid" ng-click="signupCtrl.submit()">Submit</button>
 
