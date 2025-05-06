@@ -53,7 +53,7 @@
             console.log(input);
             if (typeof input !== 'string' || input.trim() === '') {
                 console.warn('Input is invalid:', input);
-                return false;  // Return false if input is invalid
+                return false;
             }
 
             var match = input.match(/^([a-zA-Z]{1,2})(\d{1,2})$/);
